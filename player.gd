@@ -36,7 +36,7 @@ func _process(delta: float):
 		velocity = velocity.normalized() * speed # speed is previously defined
 		$AnimatedSprite2D.play()
 	else: # player is not moving
-		$AnimatedSprite2D.stop() # stop animation
+		$AnimatedSprite2D.stop() # stop animation, changing a comment for test
 	
 		
 	
