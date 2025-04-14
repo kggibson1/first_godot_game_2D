@@ -34,7 +34,10 @@ func _process(delta: float):
 	# at the same time. Also check if player is moving (is velocity non zero)
 	if velocity.length() > 0: # player is moving
 		velocity = velocity.normalized() * speed # speed is previously defined
-		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.play() # if player is moving, sprite is animated, equivalent to get_node("AnimatedSprite2D").play()
+	
+	## In GDScript, $ returns the node at the relative path from the current node, or returns null if 
+	## the node is not found. Since AnimatedSprite2D is a child of the current node, we can use $AnimatedSprite2D.
 	else: # player is not moving
 		$AnimatedSprite2D.stop() # stop animation, changing a comment for test
 	
