@@ -38,8 +38,13 @@ func _process(delta: float):
 	
 	## In GDScript, $ returns the node at the relative path from the current node, or returns null if 
 	## the node is not found. Since AnimatedSprite2D is a child of the current node, we can use $AnimatedSprite2D.
+	## this script is attached to the Player so any of the nodes under Player in the scene can be accessed.
 	else: # player is not moving
 		$AnimatedSprite2D.stop() # stop animation, changing a comment for test
+		
+	# update players position
+	position += velocity*delta
+	position = position.clamp(Vector2.ZERO, screen_size) # prevent character from leaving the screen, Vector2 = (0, 0) in top left of screen, screen size is the bottom right coords of the screen
 	
 		
 	
