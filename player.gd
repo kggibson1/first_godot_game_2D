@@ -26,9 +26,9 @@ func _process(delta: float):
 	if Input.is_action_pressed('move_left'):
 		velocity.x -= 1	
 	if Input.is_action_pressed('move_up'):
-		velocity.y += 1
+		velocity.y -= 1 # minus as y increases downwards
 	if Input.is_action_pressed('move_down'):
-		velocity.y -= 1
+		velocity.y += 1
 		
 	# normalise velocity vector, avoids faster movement in the diagonal if both x and y direction pressed
 	# at the same time. Also check if player is moving (is velocity non zero)
@@ -43,7 +43,7 @@ func _process(delta: float):
 		$AnimatedSprite2D.stop() # stop animation, changing a comment for test
 		
 	# update players position
-	position += velocity*delta
+	position += velocity * delta # delta is the frame length
 	position = position.clamp(Vector2.ZERO, screen_size) # prevent character from leaving the screen, Vector2 = (0, 0) in top left of screen, screen size is the bottom right coords of the screen
 	
 		
