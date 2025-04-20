@@ -1,4 +1,5 @@
 extends Area2D # links to the Player (renamed from player2D)
+signal hit # custom signal that player emits when it collides with an enemy, Area2D detects the collision - can find in the signal tab when clicking on the player node
 
 # set node variables
 @export var speed = 400 # How fast the player will move (pixels/sec). @export allows the variable to be set in the inspector
@@ -8,7 +9,7 @@ var screen_size # Size of the game window.
 ## Called when the node enters the scene tree for the first time, essentially init
 func _ready():
 	screen_size = get_viewport_rect().size # find size of screen window? - not getting why 
-	#hide() # hide player when game starts
+	hide() # hide player when game starts
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame. Used to update elements of the game
@@ -62,4 +63,19 @@ func _process(delta: float):
 	# prevent player from flipping upwards if going diagonally down
 	if velocity.y != 0:
 		$AnimatedSprite2D.flip_v = velocity.y > 0 # flip player vertically if moving downwards
+
+
+## Function that occurs when an external node hits the player
+func _on_body_entered(_body):
+	hide() # player disapears after being hit
+	hit.emit() # emit the hit signal, i.e this function is called
 	
+	# disable the players collision after hit once, so that this function isnt triggered twice
+	get_node('CollisionShape2D').set_deferred('disabled', true) # set_deferred tells godot to wait to disable the shape until its safe to do so
+
+
+## reset the player when starting a new game
+func start(pos):
+	position = pos # reset players start position
+	show() # show the player
+	get_node('CollisionShape2D').set_deferred('disabled', false) # turn player collision shape back on.
