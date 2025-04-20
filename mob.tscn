@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmncb31y777db"]
+[gd_scene load_steps=10 format=3 uid="uid://dmncb31y777db"]
 
+[ext_resource type="Script" uid="uid://cnf65e8rgnilj" path="res://mob.gd" id="1_1qmh0"]
 [ext_resource type="Texture2D" uid="uid://bu3edh505ee03" path="res://dodge_assets/art/enemyFlyingAlt_1.png" id="1_b3mxk"]
 [ext_resource type="Texture2D" uid="uid://b8rwwpomtahwg" path="res://dodge_assets/art/enemyFlyingAlt_2.png" id="2_1qmh0"]
 [ext_resource type="Texture2D" uid="uid://cvwieqrhs64ol" path="res://dodge_assets/art/enemySwimming_1.png" id="3_gfurk"]
@@ -50,6 +51,7 @@ height = 104.0
 [node name="Mob" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
+script = ExtResource("1_1qmh0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
