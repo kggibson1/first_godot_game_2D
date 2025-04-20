@@ -46,5 +46,14 @@ func _process(delta: float):
 	position += velocity * delta # delta is the frame length
 	position = position.clamp(Vector2.ZERO, screen_size) # prevent character from leaving the screen, Vector2 = (0, 0) in top left of screen, screen size is the bottom right coords of the screen
 	
-		
+	# edit the player animation based on walking direction
+	if velocity.x != 0: # if the player is moving horizontally
+		$AnimatedSprite2D.animation = "right" # tells the AnimatedSprite2D node to play the animation named "walk"
+		#get_node("AnimatedSprite2D").play().animation = "walk" # same as above line but long hand
+		$AnimatedSprite2D.flip_v = false # reset vertical flip as may have been set true in previous frame
+		$AnimatedSprite2D.flip_h = velocity.x < 0 # if the player is moving left, flip the walk animation
+	
+	elif velocity.y != 0:
+		$AnimatedSprite2D.animation = 'up'
+		$AnimatedSprite2D.flip_v = velocity.y > 0
 	
