@@ -8,7 +8,7 @@ var screen_size # Size of the game window.
 ## Called when the node enters the scene tree for the first time, essentially init
 func _ready():
 	screen_size = get_viewport_rect().size # find size of screen window? - not getting why 
-	hide() # hide player when game starts
+	#hide() # hide player when game starts
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame. Used to update elements of the game
@@ -58,4 +58,8 @@ func _process(delta: float):
 	elif velocity.y != 0:
 		$AnimatedSprite2D.animation = 'up' # play up animation from animations
 		$AnimatedSprite2D.flip_v = velocity.y > 0 # flip animation if player going down
+		
+	# prevent player from flipping upwards if going diagonally down
+	if velocity.y != 0:
+		$AnimatedSprite2D.flip_v = velocity.y > 0 # flip player vertically if moving downwards
 	
