@@ -7,6 +7,7 @@ var score
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	new_game() # Replace with function body.
+	#_on_mob_timer_timeout() # test spawning a new mob immeditatley
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,7 +19,7 @@ func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 
-	
+## start the start timer on a new game
 func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
@@ -26,6 +27,7 @@ func new_game():
 
 
 func _on_mob_timer_timeout():
+	#print("Spawning mob!")
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
 
@@ -52,10 +54,14 @@ func _on_mob_timer_timeout():
 
 ## restart score timer for new round and how long mobs will be spawning for
 func _on_score_timer_timeout():
+	#print("Score timer triggered.")
 	$MobTimer.start()
 	$ScoreTimer.start()
+
 
 ## if player successfully dodges all of the mobs during the timeframe, 
 ## a score of one is added to total player score
 func _on_start_timer_timeout():
 	score += 1
+	$ScoreTimer.start()
+	$MobTimer.start()

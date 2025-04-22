@@ -6,9 +6,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_lquwl"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 64, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -112, -80, 0, 0, 0, 0, 128, -80, 0, 0, 0, 0, 128, 0, 0, 0, 0, 0, 128, 104, 0, 0, 0, 0, -112, 104, 0, 0, 0, 0, -112, -80)
 }
-point_count = 5
+point_count = 6
 
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
@@ -32,6 +32,7 @@ position = Vector2(240, 450)
 curve = SubResource("Curve2D_lquwl")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-112, -80)
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
